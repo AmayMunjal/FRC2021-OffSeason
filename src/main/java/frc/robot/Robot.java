@@ -112,6 +112,7 @@ public class Robot extends TimedRobot {
         }, 1, 1, TimeUnit.SECONDS);
     }
 
+<<<<<<< Updated upstream
     public void buttonsInit() {
         // Spinnyboi
         if (config.enableSpinnyboiSubsytem) {
@@ -139,6 +140,37 @@ public class Robot extends TimedRobot {
                             buttons.operatorControl.getRawAxis(buttons.climbRightAmnt)),
                     climberSubsystem));
 
+=======
+    public void buttonsInit()
+    {
+        buttons.operatorSpinForward.whenPressed(() -> {
+            spinnyBoiSubsystem.spinForward();
+        });
+    
+        buttons.operatorSpinBackward.whenPressed(() -> {
+            spinnyBoiSubsystem.spinBackward();
+        });
+    
+        buttons.operatorSpinForward.whenReleased(() -> {
+            spinnyBoiSubsystem.stopSpin();
+        });
+    
+        buttons.operatorSpinBackward.whenReleased(() -> {
+            spinnyBoiSubsystem.stopSpin();
+        });
+        //Ball Management subsystem button
+        buttons.operatorSpinBMS.whenPressed() ->{
+ballManagementSubsystem.startSpinning();
+        });
+        buttons.operatorSpinBMS.whenReleased(() -> {
+ballManagementSubsystem.stopSpinning();
+        });
+    
+        climberSubsystem.setDefaultCommand(new RunCommand(
+                () -> climberSubsystem.moveArms(buttons.operatorControl.getRawAxis(buttons.climbLeftAmnt),
+                       buttons.operatorControl.getRawAxis(buttons.climbRightAmnt)),climberSubsystem));
+    
+>>>>>>> Stashed changes
             buttons.operatorClimbActivated.whenPressed(() -> climberSubsystem.setOperatorActive());
             buttons.operatorClimbActivated.whenReleased(() -> climberSubsystem.setOperatorInactive());
             buttons.operatorClimbActivated.whenPressed(() -> climberSubsystem.setDriverActive());
